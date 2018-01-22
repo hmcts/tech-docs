@@ -1,0 +1,25 @@
+{% extends "main.layout.html" %}
+{% from "look-and-feel/components/header.njk" import header %}
+
+{% block one_third %}
+{{ tableOfContents(page.contents) }}
+{% endblock %}
+
+{% block two_thirds %}
+{{ header(page.title, section=page.section) }}
+{{ renderMarkdown(page.markdown) | safe }}
+{% endblock %}
+
+{% macro tableOfContents(links) %}
+
+<ul class="list">
+{% for link in links %}
+  <li>
+    <a href="{{ link.href }}" class="{{ 'heading-small' if link.isSection }}">{{ link.label }}</a>
+    {% if link.links %}
+      {{ tableOfContents(link.links) }}
+    {% endif %}
+  </li>
+{% endfor %}
+</ul>
+{% endmacro %}

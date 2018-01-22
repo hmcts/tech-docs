@@ -1,0 +1,43 @@
+{
+  "name": "@hmcts/tech-docs",
+  "description": "Easy govuk styled documentation from your markdown",
+  "version": "0.0.1",
+  "main": "./src/main.js",
+  "repository": "hmcts/tech-docs",
+  "bin": {
+    "tech-docs": "./src/cli.js"
+  },
+  "dependencies": {
+    "@hmcts/look-and-feel": "^1.8.0-3",
+    "argparse": "^1.0.9",
+    "express": "^4.16.2",
+    "front-matter": "^2.3.0",
+    "glob": "^7.1.2",
+    "hosted-git-info": "^2.5.0",
+    "tech-docs-template": "https://github.com/alphagov/tech-docs-template#1343031314c567ea4166f3c48d7988f1d749d5af"
+  },
+  "devDependencies": {
+    "@hmcts/eslint-config": "^1.3.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "codacy-coverage": "^2.0.2",
+    "eslint": "^4.5.0",
+    "mocha": "^4.1.0",
+    "node-dev": "^3.1.3",
+    "nyc": "^11.1.0",
+    "sinon": "^4.1.6"
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "scripts": {
+    "dev": "node-dev --inspect=0.0.0.0:9229 src/cli.js",
+    "coverage": "nyc report --reporter=text-lcov | tee coverage.lcov | codacy-coverage",
+    "lint": "eslint .",
+    "test": "NODE_PATH=. NODE_ENV=test nyc --reporter=text-summary mocha --exit 'test/**/*.test.js'"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

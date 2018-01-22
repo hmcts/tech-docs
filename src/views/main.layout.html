@@ -1,0 +1,20 @@
+{% extends "globals.html" %}
+{% extends "layouts/govuk_template.html" %}
+
+{% block content -%}
+
+<main id="content" role="main" tabindex="-1">
+  {% block breadcrumbs %}{% endblock %}
+  {% block full_width %}
+  <div class="grid-row">
+    <div class="column-one-third">
+      {% block one_third -%}{%- endblock %}
+    </div>
+    <div class="column-two-thirds">
+      {% block two_thirds -%}{%- endblock %}
+    </div>
+  </div>
+  {% endblock %}
+</main>
+
+{%- endblock %}

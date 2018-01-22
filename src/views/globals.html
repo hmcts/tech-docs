@@ -1,0 +1,15 @@
+{% block proposition_header %}
+  {% from "look-and-feel/components/nav.njk" import propositionalNavigation %}
+  {{ propositionalNavigation(site.app.name, site.topLinks) }}
+{% endblock %}
+
+{% block page_title %}{{ page.title + " - " if page }}{{ site.app.displayName }}{% endblock %}
+
+{% block header_class %}
+  with-proposition
+{% endblock %}
+
+{% block head -%}
+<link href="{{ asset_path }}main.css" media="screen" rel="stylesheet" />
+{% endblock %}
+
