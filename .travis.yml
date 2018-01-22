@@ -1,0 +1,19 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - make build test
+
+after_success:
+  - make coverage
+  - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: npm
+  email: michael@allen.digital
+  on:
+    tags: true
+    repo: hmcts/tech-docs
+
