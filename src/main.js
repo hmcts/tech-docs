@@ -7,6 +7,13 @@ const { resolvePackageJson, resolveDocs, resolveSections, resolveReadme } = requ
 const { renderMarkdown } = require('./render');
 const { log, debug } = require('./util/logging')('tech-docs.main');
 
+const domain = () => {
+  if (process.env.URL) {
+    return process.env.URL;
+  }
+  return 'http://localhost:3000';
+}
+
 const docsApp = () => {
   const app = express();
   app.use('/docs', express.static(
@@ -15,7 +22,7 @@ const docsApp = () => {
   ));
 
   lookAndFeel.configure(app, {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: domain(),
     express: {
       views: [path.resolve(__dirname, 'views')]
     },
