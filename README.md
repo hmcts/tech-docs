@@ -7,7 +7,7 @@ code they describe.
 
 From the root of your node app:
 
-```
+```bash
 > npm install @hmcts/tech-docs
 > tech-docs
 ```
@@ -22,6 +22,6 @@ Tech docs will:
 
 Docs app can be installed from npm:
 
-```
+```bash
 > npm install -g @hmcts/tech-docs
 ```

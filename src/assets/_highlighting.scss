@@ -1,0 +1,74 @@
+code {
+  color: $red;
+  background: $grey-4;
+}
+
+pre code {
+  color: $black;
+  background: $grey-4;
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: 1px solid $grey-2;
+  line-height: 1.4;
+}
+
+.hljs-literal {
+  color: $turquoise;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+  color: $orange;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-deletion {
+  color: $fuschia;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link {
+  color: $grass-green;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: $grey-1;
+}
+
+.hljs-meta {
+  color: $brown;
+}
+
+.hljs-string,
+.hljs-attribute,
+.hljs-regex,
+.hljs-addition {
+  color: $grass-green;
+}
+
+.hljs-section,
+.hljs-title,
+.hljs-type {
+  color: $light-blue;
+}
+
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: $red;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
