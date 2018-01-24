@@ -101,4 +101,27 @@ describe('Page', () => {
       });
     }
   });
+
+  describe('#contents', () => {
+    const markdown = `
+# Title
+## Second Title
+## Another Title
+    `;
+
+    it('returns the headings from the markdown', () => {
+      const page = new Page('/page', 'Page', markdown, {});
+      expect(page.contents).to.eql([
+        { label: 'Title', href: '#title' },
+        { label: 'Second Title', href: '#second-title' },
+        { label: 'Another Title', href: '#another-title' },
+      ]);
+    });
+
+    it('returns options.contents if defined', () => {
+      const contents = [{ label: 'Overriden', href: 'www.overriden.com' }];
+      const page = new Page('/page', 'Page', markdown, { contents });
+      expect(page.contents).to.eql(contents);
+    });
+  });
 });

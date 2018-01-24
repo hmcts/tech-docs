@@ -9,6 +9,10 @@ const { log, debug } = require('./util/logging')('tech-docs.main');
 
 const docsApp = () => {
   const app = express();
+  app.use('/docs', express.static(
+    path.resolve(process.cwd(), 'docs'),
+    { fallthrough: true }
+  ));
 
   lookAndFeel.configure(app, {
     baseUrl: 'http://localhost:3000',

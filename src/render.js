@@ -1,4 +1,6 @@
 const marked = require('marked');
+const highlightJS = require('highlight.js');
+const { debug } = require('./util/logging')('tech-docs.render');
 
 const slugify = str => str.toLowerCase().replace(/[^\w]+/g, '-');
 
@@ -15,6 +17,7 @@ const headingClasses = [
   'heading-small'
 ];
 renderer.heading = (title, level) => {
+  console.log(marked);
   const id = slugify(title);
   return [
     `<h${level} class="${headingClasses[level]}" id="${id}">`,
@@ -32,16 +35,39 @@ renderer.paragraph = text => {
   ].join('\n');
 };
 
+renderer.strong = text => {
+  return `<strong class="bold">${text}</strong>`;
+};
+
+renderer.blockquote = text => {
+  return `<div class="panel panel-border-wide">${text}</div>`;
+};
+
 renderer.list = (body, ordered) => {
   return [
-    ordered ? '<ol class="list">' : '<ul class="list">',
+    ordered ? '<ol class="list list-number">' : '<ul class="list list-bullet">',
     body,
     ordered ? '</ol>' : '</ul>'
   ].join('\n');
 };
 
+const highlight = (code, lang) => {
+  if (lang) {
+    try {
+      return highlightJS.highlight(lang, code).value;
+    } catch (err) {
+      debug(`Failed rendering: ${err}`);
+      return highlightJS.highlightAuto(code).value;
+    }
+  }
+  return highlightJS.highlightAuto(code).value;
+};
+
 const renderMarkdown = content => {
-  return marked(content, { renderer });
+  return marked(content, {
+    renderer,
+    highlight
+  });
 };
 
 const headingsLinks = content => {

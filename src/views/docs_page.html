@@ -15,11 +15,12 @@
 <ul class="list">
 {% for link in links %}
   <li>
-    <a href="{{ link.href }}" class="{{ 'heading-small' if link.isSection }}">{{ link.label }}</a>
+    <a href="{{ link.href }}" class="{{ 'heading-small' if link.isSection | default(false) or link.links | default(false) }}">{{ link.label }}</a>
     {% if link.links %}
       {{ tableOfContents(link.links) }}
     {% endif %}
   </li>
 {% endfor %}
 </ul>
+
 {% endmacro %}

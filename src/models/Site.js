@@ -30,7 +30,8 @@ class Site {
     return new Site(app, topLinks, [...pages, readme]);
   }
 
-  pageFor(uri) {
+  pageFor(path) {
+    const uri = path.replace(/.\/$/, '');
     const page = this.pages.find(page => page.uri === uri);
     if (page) {
       return page;
