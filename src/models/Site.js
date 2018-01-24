@@ -31,7 +31,7 @@ class Site {
   }
 
   pageFor(path) {
-    const uri = path.replace(/.\/$/, '');
+    const uri = path.replace(/(.)\/$/, '$1');
     const page = this.pages.find(page => page.uri === uri);
     if (page) {
       return page;
