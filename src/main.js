@@ -47,7 +47,8 @@ const docsApp = ({ domain, secure, watchFiles }) => {
         feedbackLink: 'https://github.com/hmcts/one-per-page/issues/new',
         renderMarkdown
       }
-    }
+    },
+    development: { useWebpackDevMiddleware: true }
   });
 
   return loadSite().then(generatedSite => {
