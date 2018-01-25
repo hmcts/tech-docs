@@ -19,10 +19,10 @@ describe('resolve', () => {
   describe('#resolvePackageJson', () => {
     it('resolves to the package.json in the current working dir', () => {
       setCWD('./fixtures/resolve/withPackageJson');
-      const pathToPackageJson = './fixtures/resolve/withPackageJson/package.json';
+      const pathToPackage = './fixtures/resolve/withPackageJson/package.json';
       const expected = {
-        path: path.join(__dirname, pathToPackageJson),
-        json: require(pathToPackageJson)
+        path: path.join(__dirname, pathToPackage),
+        json: require(pathToPackage) // eslint-disable-line global-require
       };
       return expect(resolvePackageJson()).to.eventually.eql(expected);
     });
@@ -37,26 +37,27 @@ describe('resolve', () => {
     it('resolves all the folders in the docs folder', () => {
       setCWD('./fixtures/resolve/withSections');
       const fixtures = path.join(__dirname, './fixtures/resolve/withSections');
-      const expected = [{
+      const expected = [
+        {
           path: path.join(fixtures, './docs/'),
-          relativePath: "docs",
-          filename: "docs",
-          contents: ""
+          relativePath: 'docs',
+          filename: 'docs',
+          contents: ''
         }, {
           path: path.join(fixtures, './docs/bar/index.md'),
-          relativePath: "docs/bar/index.md",
-          filename: "index.md",
-          contents: "Bar section\n"
+          relativePath: 'docs/bar/index.md',
+          filename: 'index.md',
+          contents: 'Bar section\n'
         }, {
           path: path.join(fixtures, './docs/baz/'),
-          relativePath: "docs/baz",
-          filename: "baz",
-          contents: ""
+          relativePath: 'docs/baz',
+          filename: 'baz',
+          contents: ''
         }, {
           path: path.join(fixtures, './docs/foo/index.md'),
-          relativePath: "docs/foo/index.md",
-          filename: "index.md",
-          contents: "Foo section\n"
+          relativePath: 'docs/foo/index.md',
+          filename: 'index.md',
+          contents: 'Foo section\n'
         }
       ];
 
@@ -68,20 +69,21 @@ describe('resolve', () => {
     it('resolves a list of the files with their contents', () => {
       setCWD('./fixtures/resolve/withDocs');
       const docsPath = path.join(__dirname, './fixtures/resolve/withDocs/docs');
-      const expected = [{
+      const expected = [
+        {
           path: path.join(docsPath, './nested/deeply/deeplyNested.md'),
-          relativePath: "docs/nested/deeply/deeplyNested.md",
-          filename: "deeplyNested.md",
+          relativePath: 'docs/nested/deeply/deeplyNested.md',
+          filename: 'deeplyNested.md',
           contents: "I'm deeply nested\n"
         }, {
           path: path.join(docsPath, './nested/nested.md'),
-          relativePath: "docs/nested/nested.md",
-          filename: "nested.md",
+          relativePath: 'docs/nested/nested.md',
+          filename: 'nested.md',
           contents: "I'm nested\n"
         }, {
           path: path.join(docsPath, './root.md'),
-          relativePath: "docs/root.md",
-          filename: "root.md",
+          relativePath: 'docs/root.md',
+          filename: 'root.md',
           contents: "I'm root\n"
         }
       ];

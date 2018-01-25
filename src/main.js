@@ -1,50 +1,53 @@
 const express = require('express');
 const path = require('path');
 const lookAndFeel = require('@hmcts/look-and-feel');
-const { Site, Page } = require('./models');
 const { buildSite } = require('./site');
-const { resolvePackageJson, resolveDocs, resolveSections, resolveReadme } = require('./resolve');
+const {
+  resolvePackageJson, resolveReadme,
+  resolveDocs, resolveSections
+} = require('./resolve');
 const { renderMarkdown } = require('./render');
 const { log, debug } = require('./util/logging')('tech-docs.main');
 
-const domain = () => {
-  if (process.env.URL) {
-    return process.env.URL;
-  }
-  return 'http://localhost:3000';
-}
-
-const docsApp = () => {
+const docsApp = ({ domain, secure }) => {
   const app = express();
   app.use('/docs', express.static(
     path.resolve(process.cwd(), 'docs'),
     { fallthrough: true }
   ));
 
+  const baseUrl = [
+    secure ? 'https://' : 'http://',
+    domain
+  ].join('');
+
+  debug(`Serving assets on ${baseUrl}`);
+  if (!secure) {
+    debug('Serving assets on unsafe connection');
+  }
+
   lookAndFeel.configure(app, {
-    baseUrl: domain(),
-    express: {
-      views: [path.resolve(__dirname, 'views')]
-    },
-    webpack: {
-      entry: [path.resolve(__dirname, 'assets/main.scss')]
-    },
+    baseUrl,
+    express: { views: [path.resolve(__dirname, 'views')] },
+    webpack: { entry: [path.resolve(__dirname, 'assets/main.scss')] },
     nunjucks: {
       globals: {
         phase: 'ALPHA',
         global_header_text: 'HMCTS',
         feedbackLink: 'https://github.com/hmcts/one-per-page/issues/new',
-        renderMarkdown: renderMarkdown
+        renderMarkdown
       }
     }
   });
 
   return Promise
-    .all([resolvePackageJson(), resolveDocs(), resolveSections(), resolveReadme()])
-    .then(([packageJson, pages, sections, readme]) => {
-      return buildSite(packageJson.json, pages, sections, readme);
-    })
-    .then(site => {
+    .all([
+      resolvePackageJson(),
+      resolveDocs(),
+      resolveSections(),
+      resolveReadme()
+    ]).then(([packageJson, pages, sections, readme]) => {
+      const site = buildSite(packageJson.json, pages, sections, readme);
       log(site.humanReadable);
 
       app.get('/*', (req, res) => {

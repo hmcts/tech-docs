@@ -32,14 +32,14 @@ class Site {
 
   pageFor(path) {
     const uri = path.replace(/(.)\/$/, '$1');
-    const page = this.pages.find(page => page.uri === uri);
+    const page = this.pages.find(p => p.uri === uri);
     if (page) {
       return page;
     }
     if (uri === '/') {
       return this.pageFor('/docs/');
     }
-    return undefined;
+    return undefined; // eslint-disable-line no-undefined
   }
 }
 

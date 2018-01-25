@@ -2,7 +2,7 @@ const { fallback, isDefined, isString } = require('./util/checks');
 const hostedGitInfo = require('hosted-git-info');
 
 const parseAppName = packageJson => {
-  const name = fallback(packageJson.name, '')
+  const name = fallback(packageJson.name, '');
   return { name, displayName: fallback(packageJson.displayName, name) };
 };
 
@@ -50,9 +50,7 @@ const parseDefaultLinks = packageJson => {
   return defaults;
 };
 
-const parseTopLinks = packageJson => {
-  return [...parseDefaultLinks(packageJson)];
-};
+const parseTopLinks = packageJson => [...parseDefaultLinks(packageJson)];
 
 module.exports = {
   parseAppName,

@@ -4,7 +4,7 @@ const { readDoc } = require('../../src/resolve');
 const path = require('path');
 
 describe('Page', () => {
-  let sandbox;
+  let sandbox = sinon.createSandbox();
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
@@ -55,7 +55,6 @@ describe('Page', () => {
     });
 
     {
-      const relativePath = 'docs/section-a';
       const camelCasePath = 'docs/section-a/aPage';
       const hyphenedPath = 'docs/section-a/a-page';
       const yamlTitle = ['---', 'title: A Title', '---'].join('\n');
@@ -68,7 +67,10 @@ describe('Page', () => {
 
 
       it('plucks a title from the options', () => {
-        const page = Page.parse({ relativePath: camelCasePath, contents: yamlTitle});
+        const page = Page.parse({
+          relativePath: camelCasePath,
+          contents: yamlTitle
+        });
         expect(page.title).to.eql('A Title');
       });
 
@@ -91,12 +93,12 @@ describe('Page', () => {
       });
 
       it('defaults title to the filename (camel case)', () => {
-        const page = Page.parse({ relativePath: camelCasePath, contents: ''});
+        const page = Page.parse({ relativePath: camelCasePath, contents: '' });
         expect(page.title).to.eql('A Page');
       });
 
       it('defaults title to the filename (hyphened)', () => {
-        const page = Page.parse({ relativePath: hyphenedPath, contents: ''});
+        const page = Page.parse({ relativePath: hyphenedPath, contents: '' });
         expect(page.title).to.eql('A page');
       });
     }
@@ -114,7 +116,7 @@ describe('Page', () => {
       expect(page.contents).to.eql([
         { label: 'Title', href: '#title' },
         { label: 'Second Title', href: '#second-title' },
-        { label: 'Another Title', href: '#another-title' },
+        { label: 'Another Title', href: '#another-title' }
       ]);
     });
 

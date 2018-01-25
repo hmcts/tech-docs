@@ -29,7 +29,6 @@ class Page {
 
   get contents() {
     if (this.options.contents) {
-      console.log(this.options);
       return this.options.contents;
     }
     return this.jumpLinks;

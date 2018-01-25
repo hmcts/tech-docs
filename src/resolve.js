@@ -1,20 +1,19 @@
 const { readFile, readJson, glob } = require('./util/fs');
 const { log, debug } = require('./util/logging')('tech-docs.resolve');
 const path = require('path');
-const fs = require('fs');
 
 const resolvePackageJson = () => {
   const packageJsonPath = path.join(process.cwd(), './package.json');
   return readJson(packageJsonPath).then(
     json => {
-      debug('Resolved package.json at ')
+      debug('Resolved package.json at ');
       return { path: packageJsonPath, json };
     },
-    err => {
-      log('Failed to find package.json due to: ', err);
+    error => {
+      log('Failed to find package.json due to: ', error);
       return {};
     }
-  )
+  );
 };
 
 const readDoc = filepath => {
@@ -29,13 +28,15 @@ const readDoc = filepath => {
       return { path: filepath, relativePath, filename, contents };
     })
     .catch(error => {
-      debug(`no file found at ${relativePath}`);
+      debug(`no file found at ${relativePath}: ${error}`);
       return { path: filepath, relativePath, filename, contents: '' };
     });
 };
 
-const filename = filepath => path.basename(filepath, '.md') ||
-  path.basename(filepath, '.markdown');
+const filename = filepath => {
+  const ext = path.extname(filepath);
+  return path.basename(filepath, ext);
+};
 
 const resolveSections = () => {
   const docsPath = path.join(process.cwd(), './docs/**{/,/index.md}');
@@ -54,13 +55,15 @@ const resolveSections = () => {
     });
 };
 
+const readme = '{./readme.md,./README.md,./readme.markdown,./README.markdown}';
+
 const resolveReadme = () => {
-  const readmePath = path.join(process.cwd(), '{./readme.md,./README.md,./readme.markdown,./README.markdown}');
+  const readmePath = path.join(process.cwd(), readme);
   return glob(readmePath).then(filepaths => {
     if (filepaths.length > 0) {
       return readDoc(filepaths[0]);
     }
-    return undefined;
+    return undefined; // eslint-disable-line no-undefined
   });
 };
 
@@ -74,4 +77,10 @@ const resolveDocs = () => {
   );
 };
 
-module.exports = { resolvePackageJson, resolveDocs, readDoc, resolveSections, resolveReadme };
+module.exports = {
+  resolvePackageJson,
+  resolveDocs,
+  readDoc,
+  resolveSections,
+  resolveReadme
+};

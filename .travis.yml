@@ -1,19 +1,16 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 script:
-  - make build test
-
+- make build test
 after_success:
-  - make coverage
-  - bash <(curl -s https://codecov.io/bash)
-
+- make coverage
+- bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: npm
   email: michael@allen.digital
+  api_key:
+    secure: K2vNMyavmIdvDrgf48OB7RVl9rVVpQVww/blm8CqiV7AvZ8aMxGkKYzKdq8C23kntzWkfzfOp7E8/qx6MK2kFeqfJ67RleL3rbhxIq9LakDHtmZTN9bZ992s6cL+p3Fr9lOVjzi4wNZGFXQXUC7NgHaC5Chx8b53vrjeR9QRNOG45bLYr0pV+KFkwBNLg2FhbkbnZRFaDF0RFfKn24xncW/f2esFYNTDbNZD032sb6BIjBBV+WHsaeyIJYPF8zijlyQTKsnvScsIY4TnsJRuU1TIFMRvLBvHHZAkKgk/zc3/aDIYjY4DWCCJ8TcwFjKi1f831G8+KwX+ucSCYmIEkVEIvWJmTQyr1KJktSDyOVqKjsKvpq57xU1K6V88O8ndvKm9/cfYoGEN/EEmQaskQsXHKVvbFW52IeuWruJlVYT5dcCMGgGXFJPxRQ3Gavuf7rislMUUpy5J4K9WOesa2ZGsr4ZWK1E7FqORs/tRp5a1hL+u8b86d84H+WA153hd1Qq/RqLDVDQl//Q0aONNg2NBQ+8jPbSyt6NePIme5YsvNtruEmbxIQ+9anY32kO2P2eTiwmPGA0E5daNuPiT2d7RNmix70i8jszXOs0//DXadTOHiY8dsE5jYz/lkYSOH5rwy6kBz9gQ5UO7KkjHvMGeVv7JJNqGxj2rA3n53t0=
   on:
     tags: true
     repo: hmcts/tech-docs
-

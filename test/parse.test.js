@@ -8,7 +8,7 @@ describe('parse', () => {
   describe('#parseAppName', () => {
     it('returns json.name if present', () => {
       const returned = parseAppName({ name: 'foo' });
-      expect(returned).to.eql({ name: 'foo', displayName: 'foo'});
+      expect(returned).to.eql({ name: 'foo', displayName: 'foo' });
     });
 
     it('returns "" as a fallback', () => {
@@ -67,10 +67,12 @@ describe('parse', () => {
     });
 
     it('returns [documentation] if no repository / issues / etc', () => {
-      expect(parseDefaultLinks({})).to.eql([{
-        label: 'documentation',
-        href: '/docs'
-      }]);
+      expect(parseDefaultLinks({})).to.eql([
+        {
+          label: 'documentation',
+          href: '/docs'
+        }
+      ]);
     });
 
     describe('issues link', () => {

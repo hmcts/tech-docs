@@ -2,16 +2,12 @@ const Page = require('./Page');
 const { buildUri, splitPath, splitMarkdown, findTitle } = require('./parseOps');
 
 class Readme extends Page {
-  constructor(uri, title, markdown, options, pages) {
-    super(uri, title, markdown, options);
-  }
-
   get template() {
     return 'no_contents';
   }
 
   static parse(args) {
-    if (args === undefined) {
+    if (typeof args === 'undefined') {
       return new Readme('/', '', '', {});
     }
     const { relativePath, contents } = args;
