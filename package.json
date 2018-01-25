@@ -34,7 +34,7 @@
   },
   "scripts": {
     "serve": "node src/cli.js",
-    "dev": "node-dev --inspect=0.0.0.0:9229 src/cli.js",
+    "dev": "node-dev --inspect=0.0.0.0:9229 src/cli.js --use-http",
     "coverage": "nyc report --reporter=text-lcov | tee coverage.lcov | codacy-coverage",
     "lint": "eslint .",
     "test": "NODE_PATH=. NODE_ENV=test nyc --reporter=text-summary mocha --exit 'test/**/*.test.js'"

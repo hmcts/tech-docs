@@ -17,7 +17,6 @@ const headingClasses = [
   'heading-small'
 ];
 renderer.heading = (title, level) => {
-  console.log(marked);
   const id = slugify(title);
   return [
     `<h${level} class="${headingClasses[level]}" id="${id}">`,
@@ -27,58 +26,48 @@ renderer.heading = (title, level) => {
   ].join('\n');
 };
 
-renderer.paragraph = text => {
-  return [
-    '<p class="text">',
-    `  ${text}`,
-    '</p>'
-  ].join('\n');
-};
+renderer.paragraph = text => [
+  '<p class="text">',
+  `  ${text}`,
+  '</p>'
+].join('\n');
 
-renderer.strong = text => {
-  return `<strong class="bold">${text}</strong>`;
-};
+renderer.strong = text => `<strong class="bold">${text}</strong>`;
 
-renderer.blockquote = text => {
-  return `<div class="panel panel-border-wide">${text}</div>`;
-};
+renderer.blockquote = text =>
+  `<div class="panel panel-border-wide">${text}</div>`;
 
-renderer.list = (body, ordered) => {
-  return [
-    ordered ? '<ol class="list list-number">' : '<ul class="list list-bullet">',
-    body,
-    ordered ? '</ol>' : '</ul>'
-  ].join('\n');
-};
+renderer.list = (body, ordered) => [
+  ordered ? '<ol class="list list-number">' : '<ul class="list list-bullet">',
+  body,
+  ordered ? '</ol>' : '</ul>'
+].join('\n');
 
 const highlight = (code, lang) => {
   if (lang) {
     try {
       return highlightJS.highlight(lang, code).value;
-    } catch (err) {
-      debug(`Failed rendering: ${err}`);
+    } catch (error) {
+      debug(`Failed rendering: ${error}`);
+      debug('Dropping down to auto language discovery');
       return highlightJS.highlightAuto(code).value;
     }
   }
   return highlightJS.highlightAuto(code).value;
 };
 
-const renderMarkdown = content => {
-  return marked(content, {
-    renderer,
-    highlight
-  });
-};
+const renderMarkdown = content => marked(content, {
+  renderer,
+  highlight
+});
 
-const headingsLinks = content => {
-  return marked.lexer(content, { renderer })
-    .filter(token => token.type === 'heading')
-    .map(heading => {
-      return {
-        label: heading.text,
-        href: `#${slugify(heading.text)}`
-      };
-    });
-};
+const headingsLinks = content => marked.lexer(content, { renderer })
+  .filter(token => token.type === 'heading')
+  .map(heading => {
+    return {
+      label: heading.text,
+      href: `#${slugify(heading.text)}`
+    };
+  });
 
 module.exports = { renderMarkdown, headingsLinks };

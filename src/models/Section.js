@@ -2,7 +2,7 @@ const Page = require('./Page');
 const { buildUri, splitPath, splitMarkdown, findTitle } = require('./parseOps');
 
 class Section extends Page {
-  constructor(uri, title, markdown, options, pages) {
+  constructor(uri, title, markdown, options) {
     super(uri, title, markdown, options);
     this.pages = [];
   }

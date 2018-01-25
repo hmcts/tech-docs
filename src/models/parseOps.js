@@ -1,24 +1,26 @@
 const path = require('path');
 const frontmatter = require('front-matter');
-const { fallback, isDefined } = require('../util/checks');
+const { isDefined } = require('../util/checks');
 
 const splitPath = relativePath => path.parse(relativePath);
 
 const splitMarkdown = markdown => {
   const parsed = frontmatter(markdown);
-  const separateFirstH1AndBody = /^\n{0,}(?:#([^\#]{1,}?)\n{1,}){0,1}([\s\S]*)$/;
-  const [, firstH1, body] = parsed.body.match(separateFirstH1AndBody);
+  const splitFirstH1AndBody = /^\n{0,}(?:#([^#]{1,}?)\n{1,}){0,1}([\s\S]*)$/;
+  const [, firstH1, body] = parsed.body.match(splitFirstH1AndBody);
 
   return { body, firstH1, options: parsed.attributes };
 };
 
+const omitableNames = ['index', 'README', 'readme'];
+
 const buildUri = (dir, name) => {
-  const hidableName = name === 'index' || name === 'README' || name === 'readme';
-  if (dir === '' && !hidableName) {
+  const omitName = omitableNames.includes(name);
+  if (dir === '' && !omitName) {
     return ['', name].join('/');
   }
   const parts = dir.split(path.sep);
-  if (hidableName) {
+  if (omitName) {
     return ['', ...parts].join('/');
   }
   return ['', ...parts, name].join('/');

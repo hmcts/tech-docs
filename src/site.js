@@ -1,11 +1,6 @@
 const { Site, Page, Section, Readme } = require('./models');
 const path = require('path');
 
-const isIndex = filepath => {
-  return path.basename(filepath, path.extname(filepath)) === 'index';
-};
-const notIndex = filepath => !isIndex(filepath);
-
 const buildPagesAndSections = (pagesPaths, sectionsPaths) => {
   const pages = pagesPaths.map(Page.parse);
   const sections = sectionsPaths.map(Section.parse);
