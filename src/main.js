@@ -8,8 +8,18 @@ const {
 } = require('./resolve');
 const { renderMarkdown } = require('./render');
 const { log, debug } = require('./util/logging')('tech-docs.main');
+const watch = require('node-watch');
 
-const docsApp = ({ domain, secure }) => {
+const loadSite = () => Promise.all([
+  resolvePackageJson(),
+  resolveDocs(),
+  resolveSections(),
+  resolveReadme()
+]).then(([packageJson, pages, sections, readme]) => buildSite(
+  packageJson.json, pages, sections, readme
+));
+
+const docsApp = ({ domain, secure, watchFiles }) => {
   const app = express();
   app.use('/docs', express.static(
     path.resolve(process.cwd(), 'docs'),
@@ -40,27 +50,36 @@ const docsApp = ({ domain, secure }) => {
     }
   });
 
-  return Promise
-    .all([
-      resolvePackageJson(),
-      resolveDocs(),
-      resolveSections(),
-      resolveReadme()
-    ]).then(([packageJson, pages, sections, readme]) => {
-      const site = buildSite(packageJson.json, pages, sections, readme);
-      log(site.humanReadable);
+  return loadSite().then(generatedSite => {
+    let site = generatedSite;
+    log(site.humanReadable);
 
-      app.get('/*', (req, res) => {
-        const page = site.pageFor(req.path);
-        if (page) {
-          res.render(page.template, { site, page });
-        } else {
-          res.sendStatus('404');
-        }
+    if (watchFiles) {
+      debug('Watching for file changes');
+      const watcher = watch(process.cwd(), {
+        filter: /\.(md|markdown|html)$/,
+        recursive: true
       });
 
-      return app;
+      watcher.on('change', (evt, name) => {
+        log(`${name} changed on disk, reloading`);
+        loadSite().then(generated => {
+          site = generated;
+        });
+      });
+    }
+
+    app.get('/*', (req, res) => {
+      const page = site.pageFor(req.path);
+      if (page) {
+        res.render(page.template, { site, page });
+      } else {
+        res.sendStatus('404');
+      }
     });
+
+    return app;
+  });
 };
 
 module.exports = docsApp;

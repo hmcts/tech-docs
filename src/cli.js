@@ -25,6 +25,12 @@ parser.addArgument([ '--use-http' ], {
   action: 'storeFalse',
   dest: 'secure'
 });
+parser.addArgument([ '--watch' ], {
+  help: 'Watch for file changes',
+  defaultValue: false,
+  action: 'storeTrue',
+  dest: 'watchFiles'
+});
 
 const args = parser.parseArgs();
 

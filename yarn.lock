@@ -3696,6 +3696,10 @@ node-sass@^4.5.3:
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
 
+node-watch@^0.5.5:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/node-watch/-/node-watch-0.5.5.tgz#34865ba8bc6861ab086acdcc3403e40ed55c3274"
+
 "nopt@2 || 3":
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-3.0.6.tgz#c6465dbf08abcd4db359317f79ac68a646b28ff9"
@@ -5237,10 +5241,6 @@ tar@^2.0.0, tar@^2.2.1:
     block-stream "*"
     fstream "^1.0.2"
     inherits "2"
-
-"tech-docs-template@git+https://github.com/alphagov/tech-docs-template.git#1343031314c567ea4166f3c48d7988f1d749d5af":
-  version "0.0.0"
-  resolved "git+https://github.com/alphagov/tech-docs-template.git#1343031314c567ea4166f3c48d7988f1d749d5af"
 
 test-exclude@^4.1.1:
   version "4.1.1"
