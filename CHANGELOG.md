@@ -1,3 +1,10 @@
+<a name="0.2.0"></a>
+# 0.2.0 (2018-01-25)
+
+* Watch for changes to .md .markdown files and reload ([6a90a4e](https://github.com/hmcts/tech-docs/commit/6a90a4e))
+
+
+
 <a name="0.1.1"></a>
 ## 0.1.1 (2018-01-25)
 
