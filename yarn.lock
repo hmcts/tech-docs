@@ -5238,9 +5238,9 @@ tar@^2.0.0, tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
-"tech-docs-template@https://github.com/alphagov/tech-docs-template#1343031314c567ea4166f3c48d7988f1d749d5af":
+"tech-docs-template@git+https://github.com/alphagov/tech-docs-template.git#1343031314c567ea4166f3c48d7988f1d749d5af":
   version "0.0.0"
-  resolved "https://github.com/alphagov/tech-docs-template#1343031314c567ea4166f3c48d7988f1d749d5af"
+  resolved "git+https://github.com/alphagov/tech-docs-template.git#1343031314c567ea4166f3c48d7988f1d749d5af"
 
 test-exclude@^4.1.1:
   version "4.1.1"
