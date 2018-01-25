@@ -1,3 +1,11 @@
+<a name="0.2.2"></a>
+## 0.2.2 (2018-01-25)
+
+* Better regex for only watching markdown files ([193bc44](https://github.com/hmcts/tech-docs/commit/193bc44))
+* Render heading text markdown in the toc ([370c688](https://github.com/hmcts/tech-docs/commit/370c688))
+
+
+
 <a name="0.2.1"></a>
 ## 0.2.1 (2018-01-25)
 

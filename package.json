@@ -2,7 +2,7 @@
   "name": "@hmcts/tech-docs",
   "description": "Easy govuk styled documentation from your markdown",
   "homepage": "https://github.com/hmcts/tech-docs#readme",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "./src/main.js",
   "bin": {
     "tech-docs": "./src/cli.js"
