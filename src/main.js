@@ -58,7 +58,7 @@ const docsApp = ({ domain, secure, watchFiles }) => {
     if (watchFiles) {
       debug('Watching for file changes');
       const watcher = watch(process.cwd(), {
-        filter: /\.(md|markdown|html)$/,
+        filter: /(?:\.(?:md|markdown|html)$|\/(?!\.git$|node_modules$)\w*$)/,
         recursive: true
       });
 
