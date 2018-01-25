@@ -1,3 +1,10 @@
+<a name="0.2.1"></a>
+## 0.2.1 (2018-01-25)
+
+* Enforce using dev middleware for now ([541b2e3](https://github.com/hmcts/tech-docs/commit/541b2e3))
+
+
+
 <a name="0.2.0"></a>
 # 0.2.0 (2018-01-25)
 
