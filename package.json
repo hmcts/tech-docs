@@ -2,7 +2,7 @@
   "name": "@hmcts/tech-docs",
   "description": "Easy govuk styled documentation from your markdown",
   "homepage": "https://github.com/hmcts/tech-docs#readme",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./src/main.js",
   "bin": {
     "tech-docs": "./src/cli.js"
@@ -41,10 +41,10 @@
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | tee coverage.lcov | codacy-coverage",
     "dev": "node-dev --inspect=0.0.0.0:9229 src/cli.js --use-http",
+    "heroku-postbuild": "npm install -g @hmcts/tech-docs",
     "lint": "eslint .",
     "serve": "node src/cli.js",
-    "test": "NODE_PATH=. NODE_ENV=test nyc --reporter=text-summary mocha --exit 'test/**/*.test.js'",
-    "heroku-postbuild": "npm install -g @hmcts/tech-docs"
+    "test": "NODE_PATH=. NODE_ENV=test nyc --reporter=text-summary mocha --exit 'test/**/*.test.js'"
   },
   "license": "MIT",
   "publishConfig": {

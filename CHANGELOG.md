@@ -1,3 +1,12 @@
+<a name="0.1.1"></a>
+## 0.1.1 (2018-01-25)
+
+* Remove tech-docs-template ([8cc950e](https://github.com/hmcts/tech-docs/commit/8cc950e))
+* Update heroku scripts to use cli ([0906178](https://github.com/hmcts/tech-docs/commit/0906178))
+* Update lockfile ([74cfd3d](https://github.com/hmcts/tech-docs/commit/74cfd3d))
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2018-01-25)
 
