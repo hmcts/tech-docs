@@ -306,7 +306,7 @@ You can put arbitrary markdown inside a blockquote
 
 -------------------------------------------------------------------------------
 
-## Inline HTML
+## `Inline HTML`
 
 You can also use raw HTML in your Markdown
 

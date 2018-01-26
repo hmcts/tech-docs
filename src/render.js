@@ -2,7 +2,10 @@ const marked = require('marked');
 const highlightJS = require('highlight.js');
 const { debug } = require('./util/logging')('tech-docs.render');
 
-const slugify = str => str.toLowerCase().replace(/[^\w]+/g, '-');
+const slugify = str => str
+  .toLowerCase()
+  .replace(/[^\w]+/g, '-')
+  .replace(/(^-|-$)/g, '');
 
 const renderer = new marked.Renderer();
 const headingClasses = [
@@ -16,8 +19,8 @@ const headingClasses = [
   'heading-small',
   'heading-small'
 ];
-renderer.heading = (title, level) => {
-  const id = slugify(title);
+renderer.heading = (title, level, rawText) => {
+  const id = slugify(rawText);
   return [
     `<h${level} class="${headingClasses[level]}" id="${id}">`,
     `  <a href="#${id}" aria-hidden="true" class="heading-anchor"></a>`,
@@ -61,11 +64,13 @@ const renderMarkdown = content => marked(content, {
   highlight
 });
 
+const inline = new marked.InlineLexer([], { renderer });
+
 const headingsLinks = content => marked.lexer(content, { renderer })
   .filter(token => token.type === 'heading')
   .map(heading => {
     return {
-      label: heading.text,
+      label: inline.output(heading.text),
       href: `#${slugify(heading.text)}`
     };
   });
