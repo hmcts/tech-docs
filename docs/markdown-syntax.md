@@ -221,7 +221,7 @@ Reference style:
 
 -------------------------------------------------------------------------------
 
-## Code Highlighting
+## `Code Highlighting`
 
 ```markdown
 Inline `code` has `back-ticks around` it.
@@ -306,7 +306,7 @@ You can put arbitrary markdown inside a blockquote
 
 -------------------------------------------------------------------------------
 
-## `Inline HTML`
+## Inline HTML
 
 You can also use raw HTML in your Markdown
 
