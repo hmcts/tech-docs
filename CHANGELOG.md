@@ -1,3 +1,11 @@
+<a name="0.2.4"></a>
+## 0.2.4 (2018-01-26)
+
+* Ensure label is not html escaped ([311f9ad](https://github.com/hmcts/tech-docs/commit/311f9ad))
+* Switch demo of inline markdown in headings to somewhere that makes sense ([d1fafa8](https://github.com/hmcts/tech-docs/commit/d1fafa8))
+
+
+
 <a name="0.2.3"></a>
 ## 0.2.3 (2018-01-26)
 
