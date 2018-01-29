@@ -1,3 +1,10 @@
+<a name="0.3.0"></a>
+# 0.3.0 (2018-01-29)
+
+* Improve toc rendering to include child sections pages and allow you to omit headings from the TOC ([bd2bfd6](https://github.com/hmcts/tech-docs/commit/bd2bfd6))
+
+
+
 <a name="0.2.4"></a>
 ## 0.2.4 (2018-01-26)
 
