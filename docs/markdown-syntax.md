@@ -1,35 +1,6 @@
----
-contents:
-  - label: Headings
-    href: '#headings'
-  - label: Emphasis
-    href: '#emphasis'
-  - label: Lists
-    href: '#lists'
-    links:
-      - label: Ordered lists
-        href: '#ordered-lists'
-      - label: Nested paragraphs
-        href: '#nested-paragraphs'
-      - label: Unordered Lists
-        href: '#unordered-lists'
-  - label: Links
-    href: '#links'
-  - label: Images
-    href: '#images'
-  - label: Code Highlighting
-    href: '#code-highlighting'
-  - label: Tables
-    href: '#tables'
-  - label: Blockquotes
-    href: '#blockquotes'
-  - label: Inline HTML
-    href: '#inline-html'
-
----
 # Markdown Syntax
 
-# Headings
+## Headings
 
 ```markdown
 # H1
@@ -40,12 +11,12 @@ contents:
 ###### H6
 ```
 
-# H1
-## H2
-### H3
-#### H4
-##### H5
-###### H6
+# -H1
+## -H2
+### -H3
+#### -H4
+##### -H5
+###### -H6
 
 Alternatively, for H1 and H2, an underline-ish style:
 
@@ -57,11 +28,16 @@ Alt-H2
 ------
 ```
 
-Alt-H1
+-Alt-H1
 ======
 
-Alt-H2
+-Alt-H2
 ------
+
+You can omit a heading from the table of contents by starting it with `-`.
+```
+### -Will be omitted
+```
 
 -------------------------------------------------------------------------------
 

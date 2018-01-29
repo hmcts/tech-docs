@@ -8,11 +8,17 @@ class Section extends Page {
   }
 
   get contents() {
+    return this.contentsLinks(true);
+  }
+
+  contentsLinks(includeChildren) {
     return this.pages.map(page => {
+      const isSection = page instanceof Section;
       return {
         label: page.title,
         href: page.uri,
-        isSection: page instanceof Section
+        isSection,
+        links: isSection && includeChildren ? page.contentsLinks(false) : []
       };
     });
   }

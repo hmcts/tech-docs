@@ -114,9 +114,8 @@ describe('Page', () => {
     it('returns the headings from the markdown', () => {
       const page = new Page('/page', 'Page', markdown, {});
       expect(page.contents).to.eql([
-        { label: 'Title', href: '#title' },
-        { label: 'Second Title', href: '#second-title' },
-        { label: 'Another Title', href: '#another-title' }
+        { label: 'Second Title', href: '#second-title', links: [] },
+        { label: 'Another Title', href: '#another-title', links: [] }
       ]);
     });
 
