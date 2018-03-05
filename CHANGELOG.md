@@ -1,3 +1,11 @@
+<a name="0.4.0"></a>
+# 0.4.0 (2018-03-05)
+
+* Ignore dist folder from linting ([14149eb](https://github.com/hmcts/tech-docs/commit/14149eb))
+* Update to latest look-and-feel ([8fdd15d](https://github.com/hmcts/tech-docs/commit/8fdd15d))
+
+
+
 <a name="0.3.0"></a>
 # 0.3.0 (2018-01-29)
 
