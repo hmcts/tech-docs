@@ -1,3 +1,47 @@
+<a name="0.3.0"></a>
+# 0.3.0 (2018-01-29)
+
+* Improve toc rendering to include child sections pages and allow you to omit headings from the TOC ([bd2bfd6](https://github.com/hmcts/tech-docs/commit/bd2bfd6))
+
+
+
+<a name="0.2.4"></a>
+## 0.2.4 (2018-01-26)
+
+* Ensure label is not html escaped ([311f9ad](https://github.com/hmcts/tech-docs/commit/311f9ad))
+* Switch demo of inline markdown in headings to somewhere that makes sense ([d1fafa8](https://github.com/hmcts/tech-docs/commit/d1fafa8))
+
+
+
+<a name="0.2.3"></a>
+## 0.2.3 (2018-01-26)
+
+* Support inline markdown in headings links ([0998ede](https://github.com/hmcts/tech-docs/commit/0998ede))
+
+
+
+<a name="0.2.2"></a>
+## 0.2.2 (2018-01-25)
+
+* Better regex for only watching markdown files ([193bc44](https://github.com/hmcts/tech-docs/commit/193bc44))
+* Render heading text markdown in the toc ([370c688](https://github.com/hmcts/tech-docs/commit/370c688))
+
+
+
+<a name="0.2.1"></a>
+## 0.2.1 (2018-01-25)
+
+* Enforce using dev middleware for now ([541b2e3](https://github.com/hmcts/tech-docs/commit/541b2e3))
+
+
+
+<a name="0.2.0"></a>
+# 0.2.0 (2018-01-25)
+
+* Watch for changes to .md .markdown files and reload ([6a90a4e](https://github.com/hmcts/tech-docs/commit/6a90a4e))
+
+
+
 <a name="0.1.1"></a>
 ## 0.1.1 (2018-01-25)
 
